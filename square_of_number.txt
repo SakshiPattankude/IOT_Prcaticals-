@@ -1,0 +1,16 @@
+void setup()
+{
+  Serial.began(9600); //set baud rate to communicate betwen arduino & computer
+}
+void loop()
+{
+  int x = Serial.parseInt();   //taking input and store in x
+  double y = sq(input);       //finding square using 'sq' method & store in y
+  Serial.print("The square of "); //display string on serial monitor
+  Serial.print(x);            // display the input taken from user
+  Serial.print(" is ");     // display string
+  Serial.println(y);    // display square of entered number
+}
+
+
+

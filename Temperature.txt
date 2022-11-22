@@ -1,0 +1,62 @@
+#include <DHT.h>;           //Libraries
+DHT dht(7, DHT22);          // Initialize DHT sensor for normal 16mhz Arduino
+int chk;                    //Variables
+float temp;                 //Stores temperature value
+
+void setup()
+{
+  Serial.begin(9600);         // initialize baud rate
+  dht.begin();                // initialize dht 
+  pinMode(13, OUTPUT);        // set pin 13 as output pin
+}
+void loop()
+{
+    temp= dht.readTemperature(); //Read temp & store into 'temp' variables
+    Serial.print("Temp: ");      //Print 'temp' values to serial monitor
+    Serial.print(temp);          
+    Serial.println(" Celsius");
+    delay(2000);                 //Delay 2 sec.
+  
+    if (temp >= 28)              //set threshold condition
+    {
+      digitalWrite(13, HIGH);    // LED/Buzzer ON
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+# How to use the DHT-22 sensor with Arduino to read Temperature
+# https://create.arduino.cc/projecthub/MinukaThesathYapa/dht11-dht22-sensors-temperature-using-arduino-b7a8d6
+t = '''
+#include <dht.h>                        // library
+#define dataPin 8                       //set datapin 8
+dht DHT;                        
+
+void setup() 
+{
+  Serial.begin(9600);                   // set baudrate 9600
+  pinMode(13, OUTPUT);                  // set pin 13 as output
+}
+void loop() 
+{
+  int readData = DHT.read22(dataPin);   // read data from sensor pin 8
+  float t = DHT.temperature;            // store the temperature in t variable
+  Serial.print("Temperature = ");       // Display temp on serial monitor
+  Serial.print(t);
+  Serial.print(" *C ");  
+  delay(2000);                          // delay for 2 sec
+
+  if (t >= 28)                          // threshold condition
+  {
+      digitalWrite(13, HIGH);           // LED/Buzzer indicator ON
+  }
+}
+'''
